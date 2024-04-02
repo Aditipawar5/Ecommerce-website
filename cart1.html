@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+<title>Title</title>
+<style>
+    .cartbody{
+       display: flex;
+       width: 60%;
+       padding: 30px;
+    } 
+    header{
+       background-color: burlywood;
+       height: 80px;
+    }   
+    h1{
+       text-align: center;
+    }
+    nav{
+       background-color: bisque;
+       height: 50px;
+    }
+    li{
+       float: left;
+       padding: 20px;
+    }
+    ul{
+       list-style-type: none;
+    }
+    a{
+       text-decoration: none;
+    }
+    .product{
+       border: 2px black solid;
+       box-shadow: 3px 3px 3px grey;
+    }
+   </style>
+</head>
+<body>
+
+    
+   <body style="background-color: burlywood;">
+       <!-- <div id="cart1">
+   
+       </div>
+       <div id="div1">
+           <img class="images" src="https://mirzacdns3.s3.ap-south-1.amazonaws.com/cache/catalog/RLO0826/8-800x800.jpg">
+           <h2>shoes</h2>
+           <p>Price:-550 Rs</p>
+           <button onclick="addtocart();">Add To Cart</button>
+       </div> -->
+       <div>
+       <header>
+          <h1>Shopping Cart</h1>
+       </header>
+       <nav>
+           <ul>
+               <li><a href="">home</a></li>
+               <li><a href="">contact</a></li>
+               <li><a href="">About</a></li>
+               <li style="float: right;"><button  data-toggle="modal" data-target="#exampleModal"><img src="https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjkzNC1udW5ueS0xOS5wbmc.png" width="20" height="20"><span id="carticon">0</span></button></li>
+           </ul>
+       </nav>
+       </div><br>
+       <div class="cartbody" id="cart2"></div>
+       <!-- <img src="shoes1.jpg" alt=""> -->
+       <!-- <div id="cart1"></div> -->
+   
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Product in Cart</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <div class="modal-body" id="cart-item">
+            </div>
+        </div>
+        <div>
+            <p>Total price: <span id="cart-total">Rs.00</span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+<div id="showcard"></div>
+       <script>
+           const products = [
+               {id: 1, name: "products", price: 100, image: "Images/shoes1.jpg" },
+               {id: 1, name: "products", price: "$100", image: "https://reebok.bynder.com/transform/3e565b53-d66c-490b-902b-6d83fd84d60f/100033879_SLC_eCom-tif?io=transform:fit,width:500&quality=100" },
+               {id: 1, name: "products", price: "$100", image: "https://static.nike.com/a/images/t_default/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/2c388aed-1ee9-470d-b484-19292e29b292/air-jordan-7-retro-shoes-xbNFP8.png" },
+               {id: 1, name: "products", price: "$100", image: "https://contents.mediadecathlon.com/p1693895/968429210314c3b9e7c25b7441cf6052/p1693895.jpg" },
+             
+           ]
+           const showcart = document.getElementById('cart2');
+           products.forEach(product => {
+               showcart.innerHTML +=`
+               <div class ="product">
+                   <img src = ${product.image} width="300" height="300">
+                    <h1>${product.name}</h1>
+                    <p>Go blue and enjoy your runs with RAISE Blue Women Running Shoes from Campus. These chunky sneakers are the ultimate combo of different shades of blue ...</p>
+                    <i>${product.price}</i> <br>
+                    <button onclick = "addtocart(${product.id})">Add to cart</button><br>    `
+           }
+           );
+           cart = [];
+          window.addtocart = (productId) =>{
+            const product = products.find(p=> p.id === productId );
+            if(product){
+                cart.push(product);
+               
+                updateCart();
+            }
+          }
+          function updateCart(){
+            const cartIcon = document.getElementById('carticon');
+            const cartitem = document.getElementById('cart-item');
+            cartIcon.textContent = cart.length;
+            cartitem.innerHTML = "";
+            let totalprice = 0;
+            cart.forEach(product1 =>{
+                const cartCreate = document.createElement('div');
+                cartCreate.className = "cart-item";
+                cartCreate.innerHTML +=`
+                <div>
+                    <h3>${product1.name}</h3>
+                    <p>Price: &#8377;${product1.price}</p>
+                    </div>
+                    <button onclick = "removeCart(${product1.productid})">Remove</button>
+                    `;
+                    cartitem.appendChild(cartCreate);
+                    totalprice += product1.price;
+            })
+            const cartTotal = document.getElementById('cart-total');
+            cartTotal.textContent = totalprice;
+          }
+          window.removeCart = (productId) =>{
+            const index = cart.findIndex(product => product.productid === productId);
+            if (index !== -1){
+                cart.splice(index,1);
+                console.log(cart);
+                updateCart();
+            }
+          }
+       </script>
+       
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>

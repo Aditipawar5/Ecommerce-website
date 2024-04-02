@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart in Javascript</title>
+    <style>
+     .cartbody{
+        display: flex;
+        width: 60%;
+        padding: 20px;
+    } 
+     header{
+        background-color: burlywood;
+        height: 80px;
+     }   
+     h1{
+        text-align: center;
+     }
+     nav{
+        background-color: bisque;
+        height: 50px;
+     }
+     li{
+        float: left;
+        padding: 20px;
+     }
+     ul{
+        list-style-type: none;
+     }
+     a{
+        text-decoration: none;
+     }
+     .product{
+        border: 2px black solid;
+        box-shadow: 3px 3px 3px grey;
+     }
+    </style>
+</head>
+<body style="background-color: burlywood;">
+    <!-- <div id="cart1">
+
+    </div>
+    <div id="div1">
+        <img class="images" src="https://mirzacdns3.s3.ap-south-1.amazonaws.com/cache/catalog/RLO0826/8-800x800.jpg">
+        <h2>shoes</h2>
+        <p>Price:-550 Rs</p>
+        <button onclick="addtocart();">Add To Cart</button>
+    </div> -->
+    <div>
+    <header>
+       <h1>Shopping Cart</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="">home</a></li>
+            <li><a href="">contact</a></li>
+            <li><a href="">About</a></li>
+            <li style="float: right;"><a href=""><img src="https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjkzNC1udW5ueS0xOS5wbmc.png" width="20" height="20"><span id="carticon">0</span></a></li>
+        </ul>
+    </nav>
+    </div><br>
+    <div class="cartbody" id="cart2"></div>
+    <!-- <img src="shoes1.jpg" alt=""> -->
+    <!-- <div id="cart1"></div> -->
+
+    <script>
+        const products = [
+            {id: 1, name: "products", price: "$100", image: "Images/shoes1.jpg" },
+            {id: 1, name: "products", price: "$100", image: "https://reebok.bynder.com/transform/3e565b53-d66c-490b-902b-6d83fd84d60f/100033879_SLC_eCom-tif?io=transform:fit,width:500&quality=100" },
+            {id: 1, name: "products", price: "$100", image: "https://static.nike.com/a/images/t_default/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/2c388aed-1ee9-470d-b484-19292e29b292/air-jordan-7-retro-shoes-xbNFP8.png" },
+            {id: 1, name: "products", price: "$100", image: "https://contents.mediadecathlon.com/p1693895/968429210314c3b9e7c25b7441cf6052/p1693895.jpg" },
+          
+        ]
+        const showcart = document.getElementById('cart2');
+        products.forEach(product => {
+            showcart.innerHTML +=`
+            <div class ="product">
+                <img src = ${product.image} width="300" height="300">
+                 <h1>${product.name}</h1>
+                 <p>Go blue and enjoy your runs with RAISE Blue Women Running Shoes from Campus. These chunky sneakers are the ultimate combo of different shades of blue ...</p>
+                 <i>${product.price}</i> <br>
+                 <button onclick = "addtocart(${product.id})">Add to cart</button><br>    `
+        }
+        )
+        window.addtocart = (productId)=> {
+            const product = products.find(p=> p.id === productId);
+            if(product){
+                cart.push(product);
+                updateCart();
+            }
+        };
+        const cart=[];
+        const carticon = document.getElementById('carticon');
+        function Cart(productId){
+
+            carticon.innerHTML = cart.lenght        }
+// function addtocart(){
+    // var cartitem = document.getElementById("cart2") ;
+    // cartitem.innerHTML=`<img src = "https://mirzacdns3.s3.ap-south-1.amazonaws.com/cache/catalog/RLO0826/8-800x800.jpg" width="300" height="300">
+    // <h1>shoes</h1>
+    // <p>Go blue and enjoy your runs with RAISE Blue Women Running Shoes from Campus. These chunky sneakers are the ultimate combo of different shades of blue ...</p>
+    // <i>$(product.price)</i> <br>
+    // <button>Add to cart</button><br>`;
+    // var cartitem = document.getElementById("cart1") ;
+    // cartitem.innerHTML=`<img src = "https://www.campusshoes.com/cdn/shop/products/RAISE_22L-129_ANGLFALS-MUNLT.jpg?v=1670325436" width="300" height="300">
+    // <h1>shoes</h1>
+    // <p>Go blue and enjoy your runs with RAISE Blue Women Running Shoes from Campus. These chunky sneakers are the ultimate combo of different shades of blue ...</p>
+    // <i>$(product.price)</i> <br>
+    // <button>Add to cart</button>`;
+    // document.getElementById("cart2").appendChild(cartitem) ;
+// }
+    </script>
+    
+</body>
+</html>
